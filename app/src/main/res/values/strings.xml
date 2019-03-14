@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mes prospects</string>
+    <string name="identifier">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="empty">Vider</string>
+    <string name="login">Connexion</string>
+    <string name="remember_me">Se souvenir de moi</string>
+    <string name="main_title">Mes prospects — connexion</string>
+    <string name="err_no_username">Veuillez entrer votre nom d\'utilisateur</string>
+    <string name="err_no_password">Veuillez entrer votre mot de passe (au moins 8 caractères)</string>
+</resources>
