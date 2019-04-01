@@ -1,9 +1,12 @@
 package com.flitterman.mesprospects;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,6 +37,13 @@ public class ListProspectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_prospect);
 
         listView = findViewById(R.id.list_prospects);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Intent intent = new Intent(this, ViewProspect.class);
+                //intent.putExtra("name", "monnom"); // Pour comniquer une info à la nouvelle activité, utiliser un extra
+            }
+        });
 
         final List<String> prospects = new ArrayList<String>();
 
@@ -44,7 +54,6 @@ public class ListProspectActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject prospect = response.getJSONObject(i);
-                        Log.i("HeyOh", prospect.getString("Nom"));
                         prospects.add(i, prospect.getString("Prénom") + " " + prospect.getString("Nom"));
                     } catch (JSONException e) {
                         e.printStackTrace();
