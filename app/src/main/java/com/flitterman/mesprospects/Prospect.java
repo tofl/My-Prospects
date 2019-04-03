@@ -7,7 +7,17 @@ public class Prospect {
     private String addr1;
     private String addr2;
     private String postCode;
+    private String town;
     private String telephone;
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
     private String mail;
     private String companyName;
 

@@ -3,6 +3,7 @@ package com.flitterman.mesprospects;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+// View prospect
 public class ViewProspect extends AppCompatActivity {
 
     @Override
