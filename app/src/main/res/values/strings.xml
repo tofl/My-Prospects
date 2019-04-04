@@ -8,4 +8,13 @@
     <string name="main_title">Mes prospects — connexion</string>
     <string name="err_no_username">Veuillez entrer votre nom d\'utilisateur</string>
     <string name="err_no_password">Veuillez entrer votre mot de passe (au moins 8 caractères)</string>
+    <string name="prospect_name" >Nom du prospect</string>
+    <string name="fieldAddr1">Adresse 1</string>
+    <string name="fieldAddr2">Adresse 2</string>
+    <string name="postCode">Code postal</string>
+    <string name="town">Ville</string>
+    <string name="phone">Téléphone</string>
+    <string name="mail">Adresse mail</string>
+    <string name="companyName">Nom de l\'entreprise</string>
+    <string name="call">Appeler</string>
 </resources>

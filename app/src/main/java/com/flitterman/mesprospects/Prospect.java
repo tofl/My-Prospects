@@ -1,6 +1,8 @@
 package com.flitterman.mesprospects;
 
-public class Prospect {
+import java.io.Serializable;
+
+public class Prospect implements Serializable {
 
     private String name;
     private String firstName;

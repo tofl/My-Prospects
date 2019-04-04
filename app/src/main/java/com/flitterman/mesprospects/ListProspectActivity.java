@@ -3,35 +3,20 @@ package com.flitterman.mesprospects;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.view.ViewGroup.LayoutParams;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +25,7 @@ public class ListProspectActivity extends AppCompatActivity {
     private String url = "http://dev.audreybron.fr/flux/flux_prospects.json";
     private ListView listView;
     private ProspectsAdapter adapter;
+    ArrayList<Prospect> listProspect = new ArrayList<Prospect>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,47 +36,30 @@ public class ListProspectActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent intent = new Intent(this, ViewProspect.class);
-                //intent.putExtra("name", "monnom"); // Pour comniquer une info à la nouvelle activité, utiliser un extra
+            //Array[] array = listProspect.toArray();
+            Prospect prospect = new Prospect();
+            prospect = listProspect.get(position);
+            Intent intent = new Intent(ListProspectActivity.this, ViewProspect.class);
+            intent.putExtra("prospect", prospect);
+            startActivity(intent);
             }
         });
 
-        final List<String> prospects = new ArrayList<String>();
-
-        /*
-        JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject prospect = response.getJSONObject(i);
-                        prospects.add(i, prospect.getString("Prénom") + " " + prospect.getString("Nom"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                ArrayAdapter<String>  arrayAdapter = new ArrayAdapter<String>(ListProspectActivity.this, android.R.layout.simple_list_item_1, prospects);
-                listView.setAdapter(arrayAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
-        */
+        //final List<String> prospects = new ArrayList<String>();
 
         new GetProspects().execute(url);
 
     }
 
+    public void back(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public class GetProspects extends AsyncTask<String, String, Void> {
 
-        ArrayList<Prospect> listProspect = new ArrayList<Prospect>();
+        ///////////////////////////////////////////////////////////////////////////
 
         @Override
         protected Void doInBackground(String... urls) {
@@ -179,7 +148,7 @@ public class ListProspectActivity extends AppCompatActivity {
             TextView name = (TextView) convertView.findViewById(R.id.name);
 
             // Populate the data into the template view using the data object
-            name.setText(prospect.getName());
+            name.setText(prospect.getFirstName() + " " + prospect.getName());
 
             // Return the completed view to render on screen
             return convertView;
